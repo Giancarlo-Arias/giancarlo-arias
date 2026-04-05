@@ -1,0 +1,35 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props as Props;
+
+const pageTitle = title ? `${title} | Giancarlo Arias Dev` : "Giancarlo Arias Dev";
+const pageDescription =
+  description ||
+  "Giancarlo Arias es un desarrollador de software especializado en desarrollo web, con pasion por crear aplicaciones eficientes y faciles de usar. Con experiencia en distintos lenguajes y frameworks, esta enfocado en ofrecer soluciones de alta calidad que respondan a las necesidades de clientes y usuarios.";
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+</head>
+<body class="min-h-screen bg-[#0b0d12] text-white antialiased">
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <div class="absolute left-[-10%] top-[-10%] h-[32rem] w-[32rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+      <div class="absolute right-[-10%] top-[10%] h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-3xl"></div>
+      <div class="absolute bottom-[-10%] left-[30%] h-[24rem] w-[24rem] rounded-full bg-fuchsia-500/10 blur-3xl"></div>
+    </div>
+    <slot />
+</body>
+</html>

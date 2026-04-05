@@ -1,17 +1,14 @@
 ---
+import About from "../components/sections/About.astro";
+import Hero from "../components/sections/Hero.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 
+const title = "Inicio";
+const description =
+  "Bienvenido a Giancarlo Arias Dev, el sitio personal de Giancarlo Arias, desarrollador de software especializado en desarrollo web. Explora mis proyectos y mi informacion de contacto para conocer mas sobre mi trabajo y experiencia creando soluciones eficientes y faciles de usar.";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Giancarlo Arias Dev</title>
-  </head>
-  <body>
-    <h1>Giancarlo Arias Dev</h1>
-  </body>
-</html>
+<MainLayout title={title} description={description}>
+  <Hero />
+  <About />
+</MainLayout>

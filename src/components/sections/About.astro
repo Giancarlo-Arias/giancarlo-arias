@@ -1,0 +1,74 @@
+---
+const softSkills = [
+  "Autodidacta",
+  "Trabajo en equipo",
+  "Resolucion de problemas",
+  "Pensamiento analitico",
+  "Comunicacion efectiva",
+];
+---
+
+<section
+  id="about"
+  data-about
+  class="mx-auto w-full max-w-7xl px-6 pt-4 pb-18 lg:px-10 lg:pt-6 2xl:max-w-[110rem]"
+>
+  <div class="space-y-8 lg:space-y-10">
+    <div class="mx-auto max-w-3xl space-y-5 text-center" data-about-fade>
+      <p class="text-sm uppercase tracking-[0.28em] text-cyan-200/55">Perfil profesional</p>
+      <h2 data-about-reveal-text class="text-4xl font-semibold tracking-tight text-white md:text-5xl xl:text-6xl">
+        Sobre mi
+      </h2>
+      <p data-about-reveal-text class="mx-auto max-w-2xl text-base leading-8 text-white/58 md:text-lg">
+        Desarrollo software con enfoque integral, priorizando estructura, escalabilidad y resultados reales en cada solucion.
+      </p>
+    </div>
+
+    <div
+      data-about-card
+      class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-9"
+    >
+      <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
+        <div class="space-y-5 text-[1rem] leading-8 text-white/70 md:text-[1.04rem]">
+          <p data-about-reveal-text>
+            Desarrollador Full Stack orientado a crear soluciones modernas con foco en escalabilidad, rendimiento y una arquitectura solida.
+          </p>
+
+          <p data-about-reveal-text>
+            Trabajo tanto en backend con .NET, APIs, Python y FastAPI, como en frontend con Astro, React, Next.js y TypeScript, construyendo experiencias dinamicas y bien estructuradas.
+          </p>
+
+          <p data-about-reveal-text>
+            Tambien he desarrollado automatizaciones con n8n e integraciones con inteligencia artificial, ademas de optimizar sitios comerciales y proyectos en WordPress con mejoras reales en experiencia, rendimiento y posicionamiento.
+          </p>
+        </div>
+
+        <div
+          class="relative overflow-hidden rounded-[1.6rem] border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(7,18,26,0.96),rgba(8,12,18,0.82))] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.26)] md:p-6"
+          data-about-tech-panel
+        >
+          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(91,178,230,0.16),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]"></div>
+
+          <div class="relative space-y-5">
+            <div>
+              <p class="text-sm uppercase tracking-[0.22em] text-cyan-100/40">Habilidades blandas</p>
+              <p class="mt-2 text-lg font-medium text-white/92">Perfil colaborativo y orientado a solucion</p>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              {softSkills.map((skill) => (
+                <span class="rounded-full border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(103,183,223,0.08))] px-4 py-2 text-sm text-cyan-50/84 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import "../../scripts/about-animation";
+</script>
