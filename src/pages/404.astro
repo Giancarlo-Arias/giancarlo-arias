@@ -1,0 +1,36 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const title = "404";
+const description = "La pagina que buscas no existe o fue movida.";
+---
+
+<MainLayout title={title} description={description}>
+  <section class="mx-auto flex min-h-[70vh] w-full max-w-5xl items-center justify-center px-6 py-18 text-center lg:px-10">
+    <div class="space-y-6">
+      <p class="text-sm uppercase tracking-[0.28em] text-cyan-200/55">404</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+        La pagina que buscas no aparece por aqui.
+      </h1>
+      <p class="mx-auto max-w-2xl text-base leading-8 text-white/60 md:text-lg">
+        Puede que la ruta haya cambiado o que todavia no exista. Desde aqui puedes volver al inicio o ir directo a contacto.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center rounded-2xl border border-cyan-300/20 bg-gradient-to-r from-[#f4f8fb] via-[#d9ecf8] to-[#bfe2f4] px-5 py-3 font-medium text-[#081018] shadow-[0_12px_32px_rgba(134,196,232,0.22)] transition duration-300 hover:translate-y-[-2px]"
+        >
+          Volver al inicio
+        </a>
+
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center rounded-2xl border border-white/12 bg-white/6 px-5 py-3 font-medium text-white/82 transition duration-300 hover:bg-white/10"
+        >
+          Ir a contacto
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

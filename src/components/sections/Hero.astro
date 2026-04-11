@@ -1,5 +1,28 @@
 ---
-import profileImage from "../../assets/profile/Giancarlo.jpeg";
+import astroIcon from "@icons/astro.svg?url";
+import gsapIcon from "@icons/gsap.svg?url";
+import htmlIcon from "@icons/html.svg?url";
+import jsIcon from "@icons/js.svg?url";
+import nextjsIcon from "@icons/nextjs.svg?url";
+import profileImage from "../../assets/images/profile/giancarlo.jpeg";
+import reactIcon from "@icons/react.svg?url";
+import seoIcon from "@icons/seo.svg?url";
+import tailwindIcon from "@icons/tailwind.svg?url";
+import tsIcon from "@icons/ts.svg?url";
+import wordpressIcon from "@icons/wordpress.svg?url";
+
+const stackIcons = [
+  { name: "Astro", icon: astroIcon },
+  { name: "Tailwind CSS", icon: tailwindIcon },
+  { name: "JavaScript", icon: jsIcon },
+  { name: "TypeScript", icon: tsIcon },
+  { name: "React", icon: reactIcon },
+  { name: "Next.js", icon: nextjsIcon },
+  { name: "WordPress", icon: wordpressIcon },
+  { name: "HTML", icon: htmlIcon },
+  { name: "GSAP", icon: gsapIcon },
+  { name: "SEO", icon: seoIcon },
+];
 ---
 
 <div data-hero-root>
@@ -29,12 +52,10 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
   data-hero
   class="mx-auto grid w-full max-w-7xl items-start gap-6 px-6 pt-14 pb-2 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-[4.5rem] lg:pb-4 2xl:max-w-[110rem] 2xl:px-10"
 >
-  
-  <!-- LEFT CONTENT -->
   <div class="space-y-6 pt-2 lg:space-y-7 lg:pt-2" data-hero-copy>
     <div class="space-y-5">
       <p data-reveal-text class="text-sm uppercase tracking-[0.25em] text-white/45">
-        Desarrollo Web e Ingenieria de Sistemas
+        Desarrollo Web e Ingeniería de Sistemas
       </p>
 
       <h1 data-reveal-text class="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl xl:text-8xl">
@@ -42,20 +63,20 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
       </h1>
 
       <p data-reveal-text class="max-w-2xl text-lg leading-8 text-white/65 md:text-xl">
-        Ingeniero de Sistemas apasionado por el ciclo de vida completo del desarrollo de software, enfocado en la creacion de soluciones robustas y escalables.
+        Ingeniero de Sistemas apasionado por el ciclo de vida completo del desarrollo de software, enfocado en la creación de soluciones robustas y escalables.
       </p>
     </div>
 
     <div class="flex flex-wrap gap-4">
       <a
-        href="#experience"
+        href="#about"
         class="inline-flex items-center gap-2.5 rounded-2xl border border-cyan-300/20 bg-gradient-to-r from-[#f4f8fb] via-[#d9ecf8] to-[#bfe2f4] px-[1.125rem] py-3 font-medium text-[#081018] shadow-[0_12px_40px_rgba(134,196,232,0.28)] transition duration-300 hover:translate-y-[-2px] hover:shadow-[0_18px_55px_rgba(134,196,232,0.34)]"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
           <path d="M5 12h14" stroke-linecap="round" />
           <path d="m13 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <span>Ver experiencia</span>
+        <span>Ver perfil</span>
       </a>
 
       <a
@@ -70,16 +91,78 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
         <span>WhatsApp</span>
       </a>
     </div>
+
+    <div
+      data-hero-tech
+      class="relative w-full max-w-[36rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-4 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:px-5"
+    >
+      <div class="relative z-10 mb-4 space-y-2" data-tech-text-block>
+        <div class="space-y-2">
+          <p class="text-xs uppercase tracking-[0.24em] text-cyan-100/42">
+            Desarrollo web
+          </p>
+          <p data-tech-text-line class="max-w-2xl text-sm leading-7 text-white/64 sm:text-[0.95rem]">
+            Desarrollo soluciones web modernas con interfaces cuidadas, alto rendimiento y una implementación técnica sólida de principio a fin. Busco que cada proyecto mantenga equilibrio entre diseño, velocidad, usabilidad y calidad.
+          </p>
+          <p data-tech-text-line class="max-w-2xl text-sm leading-7 text-white/48 sm:text-[0.92rem]">
+            Mi trabajo abarca experiencias frontend, integración de lógica backend cuando hace falta, buenas prácticas, SEO técnico y optimización para construir proyectos web completos, eficientes y bien estructurados.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="relative max-w-[33rem] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
+        data-tech-marquee
+      >
+        <div
+          data-tech-marquee-track
+          class="flex w-max items-center py-2"
+        >
+          <div data-tech-marquee-group class="flex items-center gap-4 sm:gap-5">
+            {stackIcons.map((item) => (
+              <div
+                data-tech-icon-slot
+                class="flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14"
+                tabindex="0"
+              >
+                <img
+                  data-tech-icon
+                  src={item.icon}
+                  alt={item.name}
+                  title={item.name}
+                  loading="lazy"
+                  class="h-7 w-auto max-w-[2.35rem] shrink-0 object-contain opacity-82 transition duration-300 hover:opacity-100 sm:h-8 sm:max-w-[2.7rem]"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div data-tech-marquee-group aria-hidden="true" class="flex items-center gap-4 sm:gap-5">
+            {stackIcons.map((item) => (
+              <div data-tech-icon-slot class="flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14">
+                <img
+                  data-tech-icon
+                  src={item.icon}
+                  alt=""
+                  loading="lazy"
+                  class="h-7 w-auto max-w-[2.35rem] shrink-0 object-contain opacity-82 sm:h-8 sm:max-w-[2.7rem]"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div
     data-hero-media
-    class="relative mx-auto mt-1 w-full max-w-[17.75rem] justify-self-center lg:mt-0 lg:max-w-[19rem] lg:justify-self-end 2xl:max-w-[21rem]"
+    class="relative mx-auto mt-1 w-full max-w-[23rem] justify-self-center lg:mt-0 lg:max-w-[27.5rem] lg:justify-self-end xl:max-w-[29rem] 2xl:max-w-[31rem]"
   >
     <div
       data-hero-media-card
       style="--spotlight-x:50%; --spotlight-y:50%;"
-      class="relative min-h-[27rem] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:min-h-0"
+      class="relative flex min-h-[35rem] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:min-h-[40rem] xl:min-h-[42rem]"
     >
       <div
         data-hero-spotlight
@@ -93,7 +176,7 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
         width={profileImage.width}
         height={profileImage.height}
         alt="Foto de Giancarlo Arias"
-        class="aspect-[4/5] w-full rounded-[1.35rem] object-cover object-center"
+        class="h-full min-h-[31rem] w-full flex-1 rounded-[1.35rem] object-cover object-center lg:min-h-[37rem] xl:min-h-[39rem]"
         loading="eager"
       />
       <div class="absolute inset-x-3 bottom-3 z-10 rounded-[1.2rem] border border-white/10 bg-black/30 p-3 backdrop-blur-xl">
@@ -121,10 +204,7 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
     </div>
   </div>
 
-  <!-- RIGHT CARD -->
   <div class="hidden">
-    
-    <!-- glow -->
     <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-transparent to-violet-500/20 blur-2xl"></div>
 
     <div class="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
@@ -140,7 +220,7 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
 
         <div>
           <h2 class="text-2xl font-semibold">
-            Web Developer — Design Soft
+            Web Developer - Design Soft
           </h2>
 
           <p class="mt-2 text-white/65">
@@ -179,6 +259,108 @@ import profileImage from "../../assets/profile/Giancarlo.jpeg";
 </section>
 
 <script>
-  import "../../scripts/hero-animation";
+  import "../../utils/hero-animation";
+  import "../../utils/hero-tech-marquee";
+
+  const initTechWordHover = () => {
+    document.querySelectorAll("[data-tech-text-line]").forEach((line) => {
+      if (!(line instanceof HTMLElement) || line.dataset.splitReady === "true") return;
+
+      const text = line.textContent?.trim();
+      if (!text) return;
+
+      line.dataset.splitReady = "true";
+      line.setAttribute("aria-label", text);
+      line.textContent = "";
+
+      text.split(/\s+/).forEach((word, wordIndex, words) => {
+        const wordSpan = document.createElement("span");
+        wordSpan.dataset.techWord = "true";
+        wordSpan.tabIndex = 0;
+        wordSpan.style.display = "inline-flex";
+        wordSpan.style.whiteSpace = "nowrap";
+        wordSpan.style.verticalAlign = "baseline";
+        wordSpan.style.cursor = "default";
+
+        if (wordIndex < words.length - 1) {
+          wordSpan.style.marginRight = "0.34em";
+        }
+
+        Array.from(word).forEach((letter, letterIndex) => {
+          const letterSpan = document.createElement("span");
+          letterSpan.dataset.techChar = "true";
+          letterSpan.style.setProperty("--char-index", `${letterIndex}`);
+          letterSpan.style.display = "inline-block";
+          letterSpan.style.transform = "translate3d(0,0,0)";
+          letterSpan.textContent = letter;
+          wordSpan.appendChild(letterSpan);
+        });
+
+        let resetTimer = 0;
+        const totalDuration = 1320 + Math.max(0, word.length - 1) * 48;
+
+        const play = () => {
+          window.clearTimeout(resetTimer);
+          wordSpan.classList.remove("is-vaporizing");
+          void wordSpan.offsetWidth;
+          wordSpan.classList.add("is-vaporizing");
+          resetTimer = window.setTimeout(() => {
+            wordSpan.classList.remove("is-vaporizing");
+          }, totalDuration);
+        };
+
+        wordSpan.addEventListener("pointerenter", play);
+        wordSpan.addEventListener("focusin", play);
+        line.appendChild(wordSpan);
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTechWordHover, { once: true });
+  } else {
+    initTechWordHover();
+  }
+
+  document.addEventListener("astro:page-load", initTechWordHover);
 </script>
+
+<style>
+  [data-tech-word].is-vaporizing [data-tech-char] {
+    animation: tech-word-vapor 1.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--char-index) * 48ms);
+  }
+
+  @keyframes tech-word-vapor {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    30% {
+      transform: translate3d(0, -8px, 0) scale(1.02);
+      opacity: 0;
+      filter: blur(6px);
+    }
+
+    31% {
+      transform: translate3d(0, 14px, 0) scale(0.97);
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-tech-word].is-vaporizing [data-tech-char] {
+      animation: none;
+    }
+  }
+</style>
 </div>

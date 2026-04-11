@@ -1,3 +1,68 @@
 ---
-
+const whatsappUrl = "https://wa.me/50660058595";
 ---
+
+<section class="mx-auto w-full max-w-6xl px-6 py-18 lg:px-10">
+  <div class="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
+    <div class="space-y-6">
+      <div class="space-y-4">
+        <p class="text-sm uppercase tracking-[0.28em] text-cyan-200/55">Contacto</p>
+        <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-white md:text-5xl xl:text-6xl">
+          Hablemos de tu proyecto o la siguiente mejora para tu sitio.
+        </h1>
+        <p class="max-w-2xl text-base leading-8 text-white/62 md:text-lg">
+          Si necesitas una web mejor estructurada, apoyo en frontend, backend o automatizaciones, podemos revisarlo juntos y aterrizar una ruta clara.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center justify-center rounded-2xl border border-cyan-300/20 bg-gradient-to-r from-[#f4f8fb] via-[#d9ecf8] to-[#bfe2f4] px-5 py-3 font-medium text-[#081018] shadow-[0_12px_32px_rgba(134,196,232,0.22)] transition duration-300 hover:translate-y-[-2px]"
+        >
+          Escribirme por WhatsApp
+        </a>
+
+        <a
+          href="/"
+          class="inline-flex items-center justify-center rounded-2xl border border-white/12 bg-white/6 px-5 py-3 font-medium text-white/82 transition duration-300 hover:bg-white/10"
+        >
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+
+    <div class="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-7">
+      <div class="space-y-5">
+        <div>
+          <p class="text-sm uppercase tracking-[0.22em] text-cyan-100/40">Canal principal</p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="mt-2 inline-flex text-2xl font-semibold text-white transition hover:text-cyan-100"
+          >
+            +506 6005 8595
+          </a>
+          <p class="mt-3 text-sm leading-7 text-white/58">
+            Ideal para consultas, cotizaciones y seguimiento de ideas nuevas o mejoras sobre proyectos existentes.
+          </p>
+        </div>
+
+        <div class="grid gap-3">
+          <div class="rounded-2xl border border-white/8 bg-black/18 p-4">
+            <p class="text-sm text-white/42">Enfoque</p>
+            <p class="mt-1 text-white/84">Sitios modernos, arquitectura limpia y experiencia de usuario solida.</p>
+          </div>
+
+          <div class="rounded-2xl border border-white/8 bg-black/18 p-4">
+            <p class="text-sm text-white/42">Stack</p>
+            <p class="mt-1 text-white/84">Astro, React, Next.js, .NET, Python, FastAPI y automatizaciones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
