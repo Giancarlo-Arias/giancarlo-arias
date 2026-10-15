@@ -42,7 +42,7 @@ const homeUrl = getRelativeLocaleUrl(locale);
         <p class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--brand)]">{t.formEyebrow}</p>
         <h2 class="mt-3 text-3xl font-semibold tracking-[-.04em] text-[var(--text-main)] md:text-4xl">{t.formHeading}</h2>
 
-        <form data-contact-form action="/api/contact" method="post" class="mt-9 grid gap-6" novalidate>
+        <form data-contact-form action="/api/contact" method="post" class="mt-9 grid gap-6">
           <div class="grid gap-6 sm:grid-cols-2">
             <label class="grid gap-2 text-sm font-medium text-[var(--text-main)]">
               {t.nameLabel}

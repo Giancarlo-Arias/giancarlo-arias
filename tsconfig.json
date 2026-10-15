@@ -8,11 +8,10 @@
     "dist"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "paths": {
-      "@icons/*": ["src/assets/icons/*"],
+      "@icons/*": ["./src/assets/icons/*"],
     }
   }
 }

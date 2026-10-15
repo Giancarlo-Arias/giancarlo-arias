@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { getMessages } from "../i18n";
 import { getRelativeLocaleUrl } from "astro:i18n";
+export const prerender = true;
 const t = getMessages("es").notFound;
 ---
 
