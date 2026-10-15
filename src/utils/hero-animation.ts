@@ -1,4 +1,4 @@
-import {
+﻿import {
   gsap,
   onAstroPageLoad,
   prefersReducedMotion,
@@ -23,6 +23,9 @@ const setupSpotlight = (hero: HTMLElement) => {
     duration: 0.3,
     ease: "power3.out",
   });
+  const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const tiltX = gsap.quickTo(mediaCard, "rotationX", { duration: 0.5, ease: "power3.out" });
+  const tiltY = gsap.quickTo(mediaCard, "rotationY", { duration: 0.5, ease: "power3.out" });
 
   mediaCard.addEventListener("pointerenter", () => {
     gsap.to(spotlight, {
@@ -39,6 +42,10 @@ const setupSpotlight = (hero: HTMLElement) => {
 
     moveX(`${x}%`);
     moveY(`${y}%`);
+    if (canTilt) {
+      tiltX((50 - y) * 0.07);
+      tiltY((x - 50) * 0.07);
+    }
   });
 
   mediaCard.addEventListener("pointerleave", () => {
@@ -49,6 +56,10 @@ const setupSpotlight = (hero: HTMLElement) => {
     });
     moveX("50%");
     moveY("50%");
+    if (canTilt) {
+      tiltX(0);
+      tiltY(0);
+    }
   });
 };
 
@@ -210,6 +221,7 @@ const initHeroAnimation = () => {
       return;
     }
 
+    document.body.append(loader);
     document.body.classList.add("overflow-hidden");
 
     const loaderLine = loader.querySelector<HTMLElement>("[data-loader-line]");

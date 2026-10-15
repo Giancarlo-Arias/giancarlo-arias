@@ -1,20 +1,35 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getMessages } from "../../i18n";
+import type { Locale, PageId } from "../../i18n/types";
+
 interface Props {
   currentPath?: string;
   deferReveal?: boolean;
+  locale?: Locale;
+  page: PageId;
 }
 
-const { currentPath = "/", deferReveal = false } = Astro.props as Props;
+const { currentPath = "/", deferReveal = false, locale = "es", page } = Astro.props as Props;
+const t = getMessages(locale);
+
+const homeUrl = getRelativeLocaleUrl(locale);
+const contactRoute = locale === "es" ? "contacto" : "contact";
+const contactUrl = getRelativeLocaleUrl(locale, contactRoute);
+const alternateLocale: Locale = locale === "es" ? "en" : "es";
+const alternateUrl = page === "contact"
+  ? getRelativeLocaleUrl(alternateLocale, alternateLocale === "es" ? "contacto" : "contact")
+  : getRelativeLocaleUrl(alternateLocale);
 
 const isActive = (href: string) => {
-  if (href === "/") return currentPath === "/";
+  if (href === homeUrl) return currentPath === homeUrl;
   return currentPath.startsWith(href);
 };
 
 const links = [
-  { href: "/", label: "Inicio" },
-  { href: currentPath === "/" ? "#about" : "/#about", label: "Sobre mi", active: currentPath === "/" },
-  { href: "/contacto", label: "Contacto" },
+  { href: homeUrl, label: t.navigation.home },
+  { href: `${homeUrl}#about`, label: t.navigation.about, active: page === "home" },
+  { href: contactUrl, label: t.navigation.contact },
 ];
 ---
 
@@ -22,16 +37,16 @@ const links = [
   data-site-nav
   data-nav-reveal={deferReveal ? "deferred" : "ready"}
   class:list={[
-    "sticky top-0 z-40 px-4 pt-4 transition-[opacity,transform,filter] duration-500 sm:px-6",
+    "fixed inset-x-0 top-0 z-40 px-4 pt-4 transition-[opacity,transform,filter] duration-500 sm:px-6 lg:px-10 lg:pt-6",
     deferReveal && "pointer-events-none -translate-y-4 opacity-0 blur-md",
   ]}
 >
-  <nav class="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border border-white/10 bg-black/25 px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:px-6">
-    <a href="/" class="text-sm font-semibold uppercase tracking-[0.24em] text-white/92">
+  <nav class="mx-auto flex w-full max-w-5xl items-center justify-between rounded-2xl border border-white/70 bg-[#f7f5ef]/72 px-4 py-2.5 shadow-[0_12px_36px_rgba(42,52,98,.12)] backdrop-blur-xl sm:px-5">
+    <a href={homeUrl} class="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--text-main)]">
       Giancarlo Arias
     </a>
 
-    <div class="hidden items-center gap-2 md:flex">
+    <div class="hidden items-center gap-5 md:flex">
       {links.map((link) => {
         const active = "active" in link ? link.active : isActive(link.href);
 
@@ -39,10 +54,10 @@ const links = [
           <a
             href={link.href}
             class:list={[
-              "rounded-full px-4 py-2 text-sm transition",
+              "border-b border-transparent py-1 text-sm transition-colors",
               active
-                ? "bg-white/12 text-white"
-                : "text-white/62 hover:bg-white/8 hover:text-white",
+                ? "border-[var(--text-main)] text-[var(--text-main)]"
+                : "text-[var(--text-muted)] hover:text-[var(--text-main)]",
             ]}
           >
             {link.label}
@@ -52,12 +67,24 @@ const links = [
     </div>
 
     <a
+      href={alternateUrl}
+      lang={alternateLocale}
+      aria-label={t.navigation.language}
+      class="ml-auto mr-3 rounded-lg px-2 py-1.5 text-sm text-[var(--text-muted)] transition-colors hover:bg-white/70 hover:text-[var(--text-main)] md:ml-8"
+    >
+      {t.navigation.language}
+    </a>
+
+    <a
       href="https://wa.me/50660058595"
       target="_blank"
       rel="noreferrer"
-      class="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-gradient-to-r from-[#f4f8fb] via-[#d9ecf8] to-[#bfe2f4] px-4 py-2 text-sm font-medium text-[#081018] shadow-[0_10px_24px_rgba(120,187,224,0.18)] transition duration-300 hover:translate-y-[-1px]"
+      class="group inline-flex min-h-10 items-center gap-2 rounded-lg bg-[#128C7E] px-3.5 py-2 text-sm font-semibold text-white transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#0d7569] hover:shadow-[0_10px_24px_rgba(18,140,126,.28)] active:scale-[.97]"
     >
-      WhatsApp
+      <svg class="h-[1.05rem] w-[1.05rem] shrink-0 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.62 2 2.2 6.4 2.2 11.82c0 1.73.45 3.42 1.3 4.9L2 22l5.44-1.42a9.82 9.82 0 0 0 4.58 1.16h.01c5.41 0 9.82-4.4 9.82-9.82A9.75 9.75 0 0 0 19.05 4.91Zm-7.02 15.18h-.01a8.1 8.1 0 0 1-4.12-1.12l-.3-.18-3.23.84.86-3.15-.2-.32a8.14 8.14 0 0 1-1.25-4.33c0-4.49 3.67-8.15 8.17-8.15 2.18 0 4.22.84 5.76 2.39a8.08 8.08 0 0 1 2.38 5.77c0 4.49-3.67 8.15-8.16 8.15Zm4.47-6.11c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.23-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.95-1.21-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.31-.22.24-.84.82-.84 2 0 1.18.86 2.33.98 2.49.12.16 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
+      </svg>
+      {t.navigation.whatsapp}
     </a>
   </nav>
 </header>

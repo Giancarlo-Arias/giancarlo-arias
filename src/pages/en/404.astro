@@ -1,0 +1,20 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getMessages } from "../../i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const t = getMessages("en").notFound;
+---
+
+<MainLayout page="notFound">
+  <section class="mx-auto flex min-h-[70vh] w-full max-w-5xl items-center justify-center px-6 py-18 text-center lg:px-10">
+    <div class="space-y-6">
+      <p class="text-sm uppercase tracking-[0.28em] text-cyan-200/55">404</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-white md:text-6xl">{t.heading}</h1>
+      <p class="mx-auto max-w-2xl text-base leading-8 text-white/60 md:text-lg">{t.body}</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={getRelativeLocaleUrl("en")} class="inline-flex items-center justify-center rounded-2xl border border-cyan-300/20 bg-gradient-to-r from-[#f4f8fb] via-[#d9ecf8] to-[#bfe2f4] px-5 py-3 font-medium text-[#081018]">{t.homeCta}</a>
+        <a href={getRelativeLocaleUrl("en", "contact")} class="inline-flex items-center justify-center rounded-2xl border border-white/12 bg-white/6 px-5 py-3 font-medium text-white/82">{t.contactCta}</a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,43 +1,23 @@
-# Astro Starter Kit: Minimal
+# Giancarlo Arias Dev
+
+Personal portfolio built with Astro, Tailwind CSS, and GSAP. Spanish is the default language; English pages live under `/en`.
+
+## Development
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install
+pnpm dev
+pnpm build
+pnpm preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Localization
 
-## 🚀 Project Structure
+- Translation strings live in `src/i18n/es.ts` and `src/i18n/en.ts`.
+- `src/i18n/types.ts` defines the required message shape. Both language files must satisfy it, so TypeScript flags missing or incorrectly shaped translations.
+- Astro's official i18n router is configured in `astro.config.mjs`. It owns the available locales, the default locale, and URL prefixes.
+- Generate internal localized links with `getRelativeLocaleUrl()` from `astro:i18n`; do not hardcode localized URLs.
+- Pages pass their locale to `MainLayout` and localized components. Keep user-facing copy in the message files instead of embedding it in markup.
+- For repeatable content entries such as projects or articles, use `Localized<T>` from `src/i18n/types.ts` for each translated field. This requires an `es` and an `en` value on every entry at compile time.
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+To add another language, add it to Astro's `i18n.locales`, create the corresponding `src/pages/[locale]/` pages, and add a typed message file. The message type makes each locale cover the same copy keys.

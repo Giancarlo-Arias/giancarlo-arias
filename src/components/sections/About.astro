@@ -1,74 +1,94 @@
----
-const softSkills = [
-  "Autodidacta",
-  "Trabajo en equipo",
-  "Resolucion de problemas",
-  "Pensamiento analitico",
-  "Comunicacion efectiva",
-];
+﻿---
+import { getMessages } from "../../i18n";
+import type { Locale } from "../../i18n/types";
+
+const locale = (Astro.currentLocale ?? "es") as Locale;
+const t = getMessages(locale).home;
+const systemTitle = locale === "es" ? "De una idea a un sistema" : "From an idea to a system";
+const systemDetail = locale === "es" ? "Cada capa conversa con la siguiente." : "Each layer informs the next.";
+const layers = locale === "es"
+  ? [
+      { label: "Producto", position: "left-[7%] top-[17%]" },
+      { label: "Interfaces", position: "right-[5%] top-[29%]" },
+      { label: "Servicios", position: "bottom-[16%] left-[13%]" },
+      { label: "Datos", position: "bottom-[8%] right-[16%]" },
+    ]
+  : [
+      { label: "Product", position: "left-[7%] top-[17%]" },
+      { label: "Interfaces", position: "right-[5%] top-[29%]" },
+      { label: "Services", position: "bottom-[16%] left-[13%]" },
+      { label: "Data", position: "bottom-[8%] right-[16%]" },
+    ];
+const capabilities = locale === "es"
+  ? [
+      ["Frontend", "Astro · React · Next.js"],
+      ["Backend", ".NET · Python · FastAPI"],
+      ["Entrega", "APIs · Automatización · Rendimiento"],
+    ]
+  : [
+      ["Frontend", "Astro · React · Next.js"],
+      ["Backend", ".NET · Python · FastAPI"],
+      ["Delivery", "APIs · Automation · Performance"],
+    ];
 ---
 
-<section
-  id="about"
-  data-about
-  class="mx-auto w-full max-w-7xl px-6 pt-4 pb-18 lg:px-10 lg:pt-6 2xl:max-w-[110rem]"
->
-  <div class="space-y-8 lg:space-y-10">
-    <div class="mx-auto max-w-3xl space-y-5 text-center" data-about-fade>
-      <p class="text-sm uppercase tracking-[0.28em] text-cyan-200/55">Perfil profesional</p>
-      <h2 data-about-reveal-text class="text-4xl font-semibold tracking-tight text-white md:text-5xl xl:text-6xl">
-        Sobre mi
-      </h2>
-      <p data-about-reveal-text class="mx-auto max-w-2xl text-base leading-8 text-white/58 md:text-lg">
-        Desarrollo software con enfoque integral, priorizando estructura, escalabilidad y resultados reales en cada solucion.
-      </p>
+<section id="about" data-about class="about-surface relative overflow-hidden px-6 py-24 text-[var(--text-main)] md:py-32 lg:px-10">
+  <div class="mx-auto max-w-7xl 2xl:max-w-[110rem]">
+    <header data-about-intro class="grid gap-10 border-b border-[var(--text-main)]/15 pb-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,.7fr)] lg:items-end">
+      <h2 class="max-w-[9ch] text-[clamp(3.8rem,8.4vw,8.5rem)] font-semibold leading-[.82] tracking-[-.04em]">{t.aboutHeading}</h2>
+      <p class="max-w-[30rem] pb-1 text-lg leading-8 text-[var(--text-muted)] md:text-xl md:leading-9">{t.aboutSummary}</p>
+    </header>
+
+    <div class="grid gap-14 py-14 lg:grid-cols-[minmax(0,.9fr)_minmax(28rem,1.1fr)] lg:items-center lg:py-20">
+      <div data-about-copy class="max-w-[39rem] space-y-7 text-[1.05rem] leading-8 text-[var(--text-muted)] md:text-[1.16rem] md:leading-9">
+        <p class="text-[var(--text-main)]">{t.aboutParagraphOne}</p>
+        <p>{t.aboutParagraphTwo}</p>
+        <p>{t.aboutParagraphThree}</p>
+      </div>
+
+      <div data-about-system class="about-system relative min-h-[29rem] overflow-hidden border-y border-[var(--text-main)]/15 py-7 sm:min-h-[33rem]" aria-label={systemTitle}>
+        <div class="about-grid pointer-events-none absolute inset-0"></div>
+        <svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 700 520" fill="none" aria-hidden="true">
+          <path data-system-path d="M118 109C268 60 416 77 543 176M118 109C203 249 245 354 486 435M543 176C490 252 490 352 486 435M118 109C325 240 431 223 543 176" />
+          <circle cx="118" cy="109" r="4" /><circle cx="543" cy="176" r="4" /><circle cx="486" cy="435" r="4" />
+        </svg>
+
+        <div data-about-core class="about-core absolute left-1/2 top-1/2 z-10 flex h-40 w-40 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-[var(--brand)]/30 bg-[var(--surface-page)]/85 px-5 text-center shadow-[0_18px_50px_rgba(69,64,197,.12)] backdrop-blur-sm sm:h-48 sm:w-48">
+          <span class="text-[.66rem] font-semibold uppercase tracking-[.18em] text-[var(--brand)]">Software</span>
+          <span class="mt-3 text-lg font-semibold leading-5 tracking-[-.045em] text-[var(--text-main)] sm:text-xl">{systemTitle}</span>
+          <span class="mt-3 text-xs leading-5 text-[var(--text-muted)]">{systemDetail}</span>
+        </div>
+
+        {layers.map((layer) => (
+          <div data-about-node class:list={["about-node absolute z-20", layer.position]}>
+            <span class="mb-2 block h-2 w-2 rounded-full bg-[var(--brand)] shadow-[0_0_0_6px_rgb(98_94_232_/_11%)]"></span>
+            <span class="block text-sm font-semibold tracking-[-.025em] text-[var(--text-main)]">{layer.label}</span>
+          </div>
+        ))}
+      </div>
     </div>
 
-    <div
-      data-about-card
-      class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-9"
-    >
-      <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
-        <div class="space-y-5 text-[1rem] leading-8 text-white/70 md:text-[1.04rem]">
-          <p data-about-reveal-text>
-            Desarrollador Full Stack orientado a crear soluciones modernas con foco en escalabilidad, rendimiento y una arquitectura solida.
-          </p>
-
-          <p data-about-reveal-text>
-            Trabajo tanto en backend con .NET, APIs, Python y FastAPI, como en frontend con Astro, React, Next.js y TypeScript, construyendo experiencias dinamicas y bien estructuradas.
-          </p>
-
-          <p data-about-reveal-text>
-            Tambien he desarrollado automatizaciones con n8n e integraciones con inteligencia artificial, ademas de optimizar sitios comerciales y proyectos en WordPress con mejoras reales en experiencia, rendimiento y posicionamiento.
-          </p>
+    <div data-about-capabilities class="border-t border-[var(--text-main)]/15">
+      {capabilities.map(([title, detail]) => (
+        <div class="group grid gap-3 border-b border-[var(--text-main)]/15 py-5 transition-colors duration-300 md:grid-cols-[minmax(10rem,.45fr)_1fr] md:items-baseline md:gap-8 md:py-6 hover:text-[var(--brand-strong)]">
+          <p class="text-lg font-semibold tracking-[-.035em]">{title}</p>
+          <p class="text-sm text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--brand-strong)]">{detail}</p>
         </div>
-
-        <div
-          class="relative overflow-hidden rounded-[1.6rem] border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(7,18,26,0.96),rgba(8,12,18,0.82))] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.26)] md:p-6"
-          data-about-tech-panel
-        >
-          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(91,178,230,0.16),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]"></div>
-
-          <div class="relative space-y-5">
-            <div>
-              <p class="text-sm uppercase tracking-[0.22em] text-cyan-100/40">Habilidades blandas</p>
-              <p class="mt-2 text-lg font-medium text-white/92">Perfil colaborativo y orientado a solucion</p>
-            </div>
-
-            <div class="flex flex-wrap gap-3">
-              {softSkills.map((skill) => (
-                <span class="rounded-full border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(103,183,223,0.08))] px-4 py-2 text-sm text-cyan-50/84 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
 
-<script>
-  import "../../utils/about-animation";
-</script>
+<script>import "../../utils/about-animation";</script>
+
+<style>
+  .about-surface { background: transparent; }
+  .about-surface > div { position: relative; z-index: 1; }
+  .about-system { background: radial-gradient(circle at 50% 48%, rgb(210 208 255 / .42), transparent 25%), radial-gradient(circle at 90% 8%, rgb(207 229 251 / .48), transparent 36%); }
+  .about-grid { opacity: .42; background-image: linear-gradient(to right, rgb(22 32 47 / .09) 1px, transparent 1px), linear-gradient(to bottom, rgb(22 32 47 / .09) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent); }
+  [data-system-path] { stroke: var(--brand); stroke-opacity: .36; stroke-width: 1.3; stroke-dasharray: 5 8; }
+  .about-system circle { fill: var(--brand); fill-opacity: .8; }
+  .about-node { transition: color .25s ease; }
+  .about-node:hover { color: var(--brand-strong); }
+  @media (max-width: 639px) { .about-system { min-height: 27rem; } }
+</style>

@@ -1,3 +1,79 @@
 ---
+import { Image } from "astro:assets";
+import alpha from "../../assets/images/taller-alpha-dashboard.webp";
+import restaurants from "../../assets/images/pos-restaurantes-inventario.webp";
+import posmovi from "../../assets/images/posmovi-pos.webp";
+import type { Locale } from "../../i18n/types";
 
+const locale = (Astro.currentLocale ?? "es") as Locale;
+const copy = {
+  es: {
+    eyebrow: "Trabajo profesional",
+    title: "Proyectos seleccionados.",
+    intro: "Productos publicados en los que he participado profesionalmente.",
+    contribution: "Participación profesional en desarrollo web",
+    open: "Abrir sitio",
+    projects: [
+      { name: "Taller Alpha", type: "Software para talleres", description: "Órdenes, operación e inventario para talleres automotrices.", href: "https://talleralpha.com/", image: alpha, alt: "Dashboard público de Taller Alpha" },
+      { name: "POS Restaurantes", type: "Software gastronómico", description: "Ventas, inventario y operación conectados para restaurantes.", href: "https://posrestaurantes.com/", image: restaurants, alt: "Inventario web público de POS Restaurantes" },
+      { name: "Posmovi", type: "Punto de venta", description: "Cobros y gestión comercial para distintos negocios.", href: "https://posmovi.com/", image: posmovi, alt: "Módulo público de punto de venta de Posmovi" },
+    ],
+  },
+  en: {
+    eyebrow: "Professional work",
+    title: "Selected projects.",
+    intro: "Published products I have worked on professionally.",
+    contribution: "Professional work in web development",
+    open: "Open website",
+    projects: [
+      { name: "Taller Alpha", type: "Workshop software", description: "Orders, operations, and inventory for automotive workshops.", href: "https://talleralpha.com/", image: alpha, alt: "Public Taller Alpha dashboard" },
+      { name: "POS Restaurantes", type: "Restaurant software", description: "Connected sales, inventory, and operations for restaurants.", href: "https://posrestaurantes.com/", image: restaurants, alt: "Public POS Restaurantes web inventory" },
+      { name: "Posmovi", type: "Point of sale", description: "Payments and commercial management for different businesses.", href: "https://posmovi.com/", image: posmovi, alt: "Public Posmovi point-of-sale module" },
+    ],
+  },
+} satisfies Record<Locale, { eyebrow: string; title: string; intro: string; contribution: string; open: string; projects: { name: string; type: string; description: string; href: string; image: ImageMetadata; alt: string }[] }>;
+
+const t = copy[locale];
 ---
+
+<section id="projects" data-projects class="projects-surface relative overflow-hidden px-6 py-20 text-[var(--text-main)] md:py-28 lg:px-10">
+  <div class="mx-auto max-w-7xl 2xl:max-w-[110rem]">
+    <header data-project-reveal class="mb-10 flex flex-col justify-between gap-5 border-b border-[var(--text-main)]/15 pb-7 md:mb-12 md:flex-row md:items-end">
+      <div>
+        <p class="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-[var(--brand)]">{t.eyebrow}</p>
+        <h2 class="text-[clamp(2.4rem,4.5vw,5rem)] font-semibold leading-none tracking-[-.06em]">{t.title}</h2>
+      </div>
+      <p class="max-w-[22rem] text-sm leading-6 text-[#52645f] md:text-base">{t.intro}</p>
+    </header>
+
+    <div class="grid gap-4 md:grid-cols-3">
+      {t.projects.map((project, index) => (
+        <article data-project-item class="project-card group relative min-h-[27rem] overflow-hidden bg-[var(--text-main)] md:min-h-[31rem]">
+          <Image src={project.image} alt={project.alt} widths={[480, 720, 960]} sizes="(min-width: 768px) 33vw, 100vw" format="webp" loading="lazy" class="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.045]" />
+          <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#10201d] via-[#10201d]/30 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 z-20 p-5 text-[#f5f5ef] md:p-6">
+            <p class="mb-7 text-[.65rem] font-medium uppercase tracking-[.18em] text-[#c5d5cf]">0{index + 1} / {project.type}</p>
+            <div class="flex items-end justify-between gap-3">
+              <div>
+                <h3 class="text-2xl font-semibold tracking-[-.045em] md:text-3xl">{project.name}</h3>
+                <p class="mt-2 max-w-[18rem] text-sm leading-5 text-[#d4dfd9]">{project.description}</p>
+              </div>
+              <a href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.open}: ${project.name}`} class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/45 text-xl transition-[transform,background-color,color] duration-200 hover:-translate-y-1 hover:bg-[var(--surface-page)] hover:text-[var(--text-main)] active:scale-[.94]">↗</a>
+            </div>
+            <p class="mt-5 border-t border-white/20 pt-3 text-xs text-[#d4dfd9]">{t.contribution}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>import "../../utils/projects-animation";</script>
+
+<style>
+  .projects-surface { background: transparent; }
+  .projects-surface::before { content: ""; pointer-events: none; position: absolute; inset: 8% auto auto -16rem; width: 34rem; height: 24rem; border-radius: 999px; opacity: .42; background: radial-gradient(circle, rgb(210 208 255 / .64), transparent 67%); filter: blur(12px); }
+  .projects-surface > div { position: relative; z-index: 1; }
+  .project-card::after { content: ""; pointer-events: none; position: absolute; inset: 0; opacity: 0; background: linear-gradient(145deg, rgb(98 94 232 / .42), transparent 46%, rgb(94 160 224 / .22)); transition: opacity .45s ease; }
+  .project-card:hover::after { opacity: 1; }
+</style>

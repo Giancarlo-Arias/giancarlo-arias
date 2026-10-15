@@ -1,68 +1,113 @@
----
+﻿---
+import { getMessages } from "../../i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import type { Locale } from "../../i18n/types";
+
+const locale = (Astro.currentLocale ?? "es") as Locale;
+const t = getMessages(locale).contact;
 const whatsappUrl = "https://wa.me/50660058595";
+const homeUrl = getRelativeLocaleUrl(locale);
 ---
 
-<section class="mx-auto w-full max-w-6xl px-6 py-18 lg:px-10">
-  <div class="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
-    <div class="space-y-6">
-      <div class="space-y-4">
-        <p class="text-sm uppercase tracking-[0.28em] text-cyan-200/55">Contacto</p>
-        <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-white md:text-5xl xl:text-6xl">
-          Hablemos de tu proyecto o la siguiente mejora para tu sitio.
-        </h1>
-        <p class="max-w-2xl text-base leading-8 text-white/62 md:text-lg">
-          Si necesitas una web mejor estructurada, apoyo en frontend, backend o automatizaciones, podemos revisarlo juntos y aterrizar una ruta clara.
-        </p>
+<section class="contact-surface relative overflow-hidden px-6 pb-24 pt-32 lg:px-10 lg:pb-32 lg:pt-40">
+  <div class="mx-auto max-w-7xl 2xl:max-w-[110rem]">
+    <header class="grid gap-9 border-b border-[var(--text-main)]/15 pb-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,.68fr)] lg:items-end">
+      <div>
+        <p class="mb-5 text-xs font-semibold uppercase tracking-[.18em] text-[var(--brand)]">{t.eyebrow}</p>
+        <h1 class="max-w-[12ch] text-[clamp(3rem,6.5vw,6.8rem)] font-semibold leading-[.88] tracking-[-.04em] text-[var(--text-main)]">{t.heading}</h1>
       </div>
+      <p class="max-w-[31rem] text-lg leading-8 text-[var(--text-muted)] md:text-xl md:leading-9">{t.intro}</p>
+    </header>
 
-      <div class="flex flex-wrap gap-4">
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noreferrer"
-          class="inline-flex items-center justify-center rounded-2xl border border-cyan-300/20 bg-gradient-to-r from-[#f4f8fb] via-[#d9ecf8] to-[#bfe2f4] px-5 py-3 font-medium text-[#081018] shadow-[0_12px_32px_rgba(134,196,232,0.22)] transition duration-300 hover:translate-y-[-2px]"
-        >
-          Escribirme por WhatsApp
-        </a>
-
-        <a
-          href="/"
-          class="inline-flex items-center justify-center rounded-2xl border border-white/12 bg-white/6 px-5 py-3 font-medium text-white/82 transition duration-300 hover:bg-white/10"
-        >
-          Volver al inicio
-        </a>
-      </div>
-    </div>
-
-    <div class="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-7">
-      <div class="space-y-5">
+    <div class="grid gap-12 py-14 lg:grid-cols-[minmax(0,.82fr)_minmax(26rem,1.18fr)] lg:gap-20 lg:py-20">
+      <aside class="flex flex-col justify-between gap-10">
         <div>
-          <p class="text-sm uppercase tracking-[0.22em] text-cyan-100/40">Canal principal</p>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            class="mt-2 inline-flex text-2xl font-semibold text-white transition hover:text-cyan-100"
-          >
+          <p class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--brand)]">{t.channelEyebrow}</p>
+          <a href={whatsappUrl} target="_blank" rel="noreferrer" class="group mt-4 inline-flex items-center gap-3 text-2xl font-semibold tracking-[-.04em] text-[var(--text-main)] transition-colors hover:text-[#128C7E] md:text-3xl">
+            <svg class="h-7 w-7 shrink-0 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.62 2 2.2 6.4 2.2 11.82c0 1.73.45 3.42 1.3 4.9L2 22l5.44-1.42a9.82 9.82 0 0 0 4.58 1.16h.01c5.41 0 9.82-4.4 9.82-9.82A9.75 9.75 0 0 0 19.05 4.91Zm-7.02 15.18h-.01a8.1 8.1 0 0 1-4.12-1.12l-.3-.18-3.23.84.86-3.15-.2-.32a8.14 8.14 0 0 1-1.25-4.33c0-4.49 3.67-8.15 8.17-8.15 2.18 0 4.22.84 5.76 2.39a8.08 8.08 0 0 1 2.38 5.77c0 4.49-3.67 8.15-8.16 8.15Zm4.47-6.11c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.23-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.95-1.21-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.31-.22.24-.84.82-.84 2 0 1.18.86 2.33.98 2.49.12.16 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" /></svg>
             +506 6005 8595
           </a>
-          <p class="mt-3 text-sm leading-7 text-white/58">
-            Ideal para consultas, cotizaciones y seguimiento de ideas nuevas o mejoras sobre proyectos existentes.
-          </p>
+          <p class="mt-4 max-w-sm text-sm leading-7 text-[var(--text-muted)]">{t.channelDescription}</p>
         </div>
 
-        <div class="grid gap-3">
-          <div class="rounded-2xl border border-white/8 bg-black/18 p-4">
-            <p class="text-sm text-white/42">Enfoque</p>
-            <p class="mt-1 text-white/84">Sitios modernos, arquitectura limpia y experiencia de usuario solida.</p>
-          </div>
-
-          <div class="rounded-2xl border border-white/8 bg-black/18 p-4">
-            <p class="text-sm text-white/42">Stack</p>
-            <p class="mt-1 text-white/84">Astro, React, Next.js, .NET, Python, FastAPI y automatizaciones.</p>
-          </div>
+        <div class="border-t border-[var(--text-main)]/15 pt-6 text-sm leading-7 text-[var(--text-muted)]">
+          <p><span class="font-semibold text-[var(--text-main)]">{t.focusLabel}:</span> {t.focusValue}</p>
+          <p class="mt-4"><span class="font-semibold text-[var(--text-main)]">{t.stackLabel}:</span> {t.stackValue}</p>
         </div>
+
+        <a href={homeUrl} class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--brand)]">← {t.homeCta}</a>
+      </aside>
+
+      <div class="relative border-t border-[var(--text-main)]/15 pt-7 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+        <p class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--brand)]">{t.formEyebrow}</p>
+        <h2 class="mt-3 text-3xl font-semibold tracking-[-.04em] text-[var(--text-main)] md:text-4xl">{t.formHeading}</h2>
+
+        <form data-contact-form action="/api/contact" method="post" class="mt-9 grid gap-6" novalidate>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <label class="grid gap-2 text-sm font-medium text-[var(--text-main)]">
+              {t.nameLabel}
+              <input name="name" type="text" autocomplete="name" required maxlength="80" class="contact-input" />
+            </label>
+            <label class="grid gap-2 text-sm font-medium text-[var(--text-main)]">
+              {t.emailLabel}
+              <input name="email" type="email" autocomplete="email" required maxlength="254" class="contact-input" />
+            </label>
+          </div>
+          <label class="grid gap-2 text-sm font-medium text-[var(--text-main)]">
+            {t.messageLabel}
+            <textarea name="message" required minlength="10" maxlength="4000" rows="7" placeholder={t.messagePlaceholder} class="contact-input min-h-44 resize-y"></textarea>
+          </label>
+          <div class="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <label>Company<input name="company" type="text" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <div class="flex flex-wrap items-center gap-5 pt-1">
+            <button data-contact-submit type="submit" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[var(--text-main)] px-5 py-3 text-sm font-semibold text-[var(--surface-page)] transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[var(--brand)] hover:shadow-[0_12px_26px_rgba(98,94,232,.2)] disabled:cursor-wait disabled:opacity-70">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <span>{t.submitLabel}</span>
+            </button>
+            <p data-contact-status class="min-h-5 text-sm text-[var(--text-muted)]" role="status" aria-live="polite"></p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </section>
+
+<script define:vars={{ sendingLabel: t.sendingLabel, successMessage: t.successMessage, errorMessage: t.errorMessage }}>
+  document.querySelectorAll<HTMLFormElement>("[data-contact-form]").forEach((form) => {
+    const submit = form.querySelector<HTMLButtonElement>("[data-contact-submit]");
+    const status = form.querySelector<HTMLElement>("[data-contact-status]");
+    const label = submit?.querySelector("span");
+    const defaultLabel = label?.textContent ?? "";
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity() || !submit || !status || !label) return;
+      submit.disabled = true;
+      label.textContent = sendingLabel;
+      status.textContent = "";
+
+      try {
+        const response = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message);
+        form.reset();
+        status.textContent = result.message || successMessage;
+        status.className = "min-h-5 text-sm text-[#128C7E]";
+      } catch {
+        status.textContent = errorMessage;
+        status.className = "min-h-5 text-sm text-[#b42318]";
+      } finally {
+        submit.disabled = false;
+        label.textContent = defaultLabel;
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact-surface { background: radial-gradient(circle at 88% 8%, rgb(210 208 255 / .5), transparent 28%), radial-gradient(circle at 8% 54%, rgb(207 229 251 / .54), transparent 31%); }
+  .contact-input { width: 100%; border-bottom: 1px solid rgb(22 32 47 / .24); background: transparent; padding: .7rem 0; color: var(--text-main); outline: none; transition: border-color .2s ease, box-shadow .2s ease; }
+  .contact-input::placeholder { color: color-mix(in srgb, var(--text-muted) 76%, transparent); }
+  .contact-input:focus { border-color: var(--brand); box-shadow: 0 2px 0 var(--brand); }
+</style>

@@ -1,14 +1,12 @@
 ---
 import About from "../components/sections/About.astro";
 import Hero from "../components/sections/Hero.astro";
+import Projects from "../components/sections/Projects.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-
-const title = "Inicio";
-const description =
-  "Bienvenido a Giancarlo Arias Dev, el sitio personal de Giancarlo Arias, desarrollador de software especializado en desarrollo web. Explora mis proyectos y mi informacion de contacto para conocer mas sobre mi trabajo y experiencia creando soluciones eficientes y faciles de usar.";
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout page="home">
   <Hero />
+  <Projects />
   <About />
 </MainLayout>
