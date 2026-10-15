@@ -8,8 +8,8 @@
   --color-lilac: #ecebff;
   --color-sky: #e4f0fb;
   --color-mint: #d5efdf;
-  --color-accent: #625ee8;
-  --color-accent-strong: #4540c5;
+  --color-accent: #2a718f;
+  --color-accent-strong: #1c566f;
 }
 
 :root {
@@ -21,8 +21,8 @@
   --text-main: #16202f;
   --text-muted: #566172;
   --line-soft: rgb(22 32 47 / 13%);
-  --brand: #625ee8;
-  --brand-strong: #4540c5;
+  --brand: #2a718f;
+  --brand-strong: #1c566f;
   --glow-mint: #d5efdf;
   --glow-violet: #d2d0ff;
   --glow-sky: #cfe5fb;
