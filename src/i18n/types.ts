@@ -4,7 +4,7 @@ export type Localized<T> = Record<Locale, T>;
 
 export interface Messages {
   site: { name: string; description: string };
-  navigation: { home: string; about: string; contact: string; whatsapp: string; language: string };
+  navigation: { home: string; about: string; contact: string; whatsapp: string; language: string; openMenu: string; closeMenu: string };
   home: {
     title: string; description: string; heroEyebrow: string; heroHeading: string;
     heroIntro: string; profileCta: string; whatsappCta: string; webDevelopment: string;

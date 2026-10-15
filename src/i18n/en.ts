@@ -5,11 +5,11 @@ const en = {
     name: "Giancarlo Arias Dev",
     description: "Giancarlo Arias is a systems engineer and software developer building efficient, accessible, and easy-to-use web experiences."
   },
-  navigation: { home: "Home", about: "About", contact: "Contact", whatsapp: "WhatsApp", language: "Español" },
+  navigation: { home: "Home", about: "About", contact: "Contact", whatsapp: "WhatsApp", language: "Español", openMenu: "Open menu", closeMenu: "Close menu" },
   home: {
     title: "Home",
     description: "Welcome to Giancarlo Arias Dev, the personal website of Giancarlo Arias, a software developer focused on web development. Explore my profile and experience building efficient, easy-to-use solutions.",
-    heroEyebrow: "Web development and systems engineering",
+    heroEyebrow: "Software developer",
     heroHeading: "Giancarlo Arias",
     heroIntro: "Systems engineer passionate about the full software development lifecycle, focused on building robust and scalable solutions.",
     profileCta: "View profile", whatsappCta: "WhatsApp", webDevelopment: "Web development",

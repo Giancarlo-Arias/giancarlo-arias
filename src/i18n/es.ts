@@ -5,11 +5,11 @@ const es = {
     name: "Giancarlo Arias Dev",
     description: "Giancarlo Arias es ingeniero de sistemas y desarrollador de software. Creo experiencias web eficientes, accesibles y fáciles de usar."
   },
-  navigation: { home: "Inicio", about: "Sobre mí", contact: "Contacto", whatsapp: "WhatsApp", language: "English" },
+  navigation: { home: "Inicio", about: "Sobre mí", contact: "Contacto", whatsapp: "WhatsApp", language: "English", openMenu: "Abrir menú", closeMenu: "Cerrar menú" },
   home: {
     title: "Inicio",
     description: "Bienvenido a Giancarlo Arias Dev, el sitio personal de Giancarlo Arias, desarrollador de software especializado en desarrollo web. Explora mi perfil y experiencia creando soluciones eficientes y fáciles de usar.",
-    heroEyebrow: "Desarrollo web e ingeniería de sistemas",
+    heroEyebrow: "Desarrollador de software",
     heroHeading: "Giancarlo Arias",
     heroIntro: "Ingeniero de Sistemas apasionado por el ciclo de vida completo del desarrollo de software, enfocado en crear soluciones robustas y escalables.",
     profileCta: "Ver perfil", whatsappCta: "WhatsApp", webDevelopment: "Desarrollo web",

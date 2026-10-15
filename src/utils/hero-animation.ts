@@ -70,6 +70,7 @@ const createHeroRevealTimeline = (hero: HTMLElement) => {
   const revealTextBlocks = hero.querySelectorAll<HTMLElement>("[data-reveal-text]");
   const techCopyItems = hero.querySelectorAll<HTMLElement>("[data-tech-text-block] > *");
   const techIconSlots = hero.querySelectorAll<HTMLElement>("[data-tech-icon-slot]");
+  const usesDesktopHeroLayout = window.matchMedia("(min-width: 1280px)").matches;
 
   splitRevealText(revealTextBlocks);
   setupSpotlight(hero);
@@ -82,7 +83,13 @@ const createHeroRevealTimeline = (hero: HTMLElement) => {
   gsap.set(techIconSlots, { autoAlpha: 0, y: 20, scale: 0.92 });
 
   if (media) {
-    gsap.set(media, { autoAlpha: 0, x: 60, y: 30, scale: 0.92, rotate: -3 });
+    gsap.set(media, {
+      autoAlpha: 0,
+      x: usesDesktopHeroLayout ? 60 : 0,
+      y: usesDesktopHeroLayout ? 30 : 20,
+      scale: 0.94,
+      rotate: usesDesktopHeroLayout ? -3 : 0,
+    });
   }
 
   const timeline = gsap.timeline({
@@ -169,7 +176,7 @@ const createHeroRevealTimeline = (hero: HTMLElement) => {
     );
   }
 
-  if (mediaCard) {
+  if (mediaCard && usesDesktopHeroLayout) {
     timeline.call(() => {
       gsap.killTweensOf(mediaCard);
       gsap.to(mediaCard, {
@@ -194,6 +201,7 @@ const playHeroContent = (hero: HTMLElement) => {
 const initHeroAnimation = () => {
   const heroRoots = document.querySelectorAll<HTMLElement>("[data-hero-root]");
   const reduceMotion = prefersReducedMotion();
+  const appState = window as Window & { __portfolioInitialPath?: string; __portfolioHeroIntroConsumed?: boolean };
 
   heroRoots.forEach((root, index) => {
     const hero = root.querySelector<HTMLElement>("[data-hero]");
@@ -215,11 +223,15 @@ const initHeroAnimation = () => {
       return;
     }
 
-    if (index > 0 || !loader) {
+    const isInitialHomeVisit = appState.__portfolioInitialPath === window.location.pathname && !appState.__portfolioHeroIntroConsumed;
+
+    if (index > 0 || !loader || !isInitialHomeVisit) {
       loader?.remove();
       playHeroContent(hero);
       return;
     }
+
+    appState.__portfolioHeroIntroConsumed = true;
 
     document.body.append(loader);
     document.body.classList.add("overflow-hidden");

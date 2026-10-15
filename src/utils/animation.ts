@@ -49,38 +49,7 @@ export const queueScrollRefresh = () => {
   });
 };
 
-export const revealDeferredNavigation = () => {
-  const nav = document.querySelector<HTMLElement>('[data-nav-reveal="deferred"]');
-  if (!nav || nav.dataset.navReady === "true") return;
-
-  nav.dataset.navReady = "true";
-
-  if (prefersReducedMotion()) {
-    nav.classList.remove("pointer-events-none", "-translate-y-4", "opacity-0", "blur-md");
-    nav.dataset.navReveal = "ready";
-    gsap.set(nav, { clearProps: "all" });
-    return;
-  }
-
-  gsap.to(nav, {
-    autoAlpha: 1,
-    y: 0,
-    filter: "blur(0px)",
-    duration: 0.72,
-    ease: "expo.out",
-    onStart: () => {
-      nav.classList.remove("pointer-events-none");
-    },
-    onComplete: () => {
-      nav.classList.remove("-translate-y-4", "opacity-0", "blur-md");
-      nav.dataset.navReveal = "ready";
-      gsap.set(nav, { clearProps: "all" });
-    },
-  });
-};
-
 export const signalPageIntroReady = () => {
-  revealDeferredNavigation();
   document.dispatchEvent(new CustomEvent(PAGE_INTRO_READY_EVENT));
 };
 

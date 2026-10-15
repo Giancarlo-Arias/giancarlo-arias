@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import { getMessages } from "../i18n";
 import type { Locale, PageId } from "../i18n/types";
@@ -17,7 +18,6 @@ const pageTitle = `${pageContent.title} | ${messages.site.name}`;
 const pageDescription = pageContent.description;
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
 const currentPath = Astro.url.pathname;
-const deferNavbarReveal = currentPath === "/" || currentPath === "/en";
 ---
 
 <!DOCTYPE html>
@@ -28,9 +28,13 @@ const deferNavbarReveal = currentPath === "/" || currentPath === "/en";
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <ClientRouter />
+    <script is:inline>
+      window.__portfolioInitialPath ??= window.location.pathname;
+    </script>
 </head>
 <body class="min-h-screen overflow-x-hidden bg-[var(--surface-page)] text-[var(--text-main)] antialiased">
-    <Navbar currentPath={currentPath} locale={locale} page={page} deferReveal={deferNavbarReveal} />
+    <Navbar currentPath={currentPath} locale={locale} page={page} />
     <main id="main-content" class="relative z-10">
       <slot />
     </main>
